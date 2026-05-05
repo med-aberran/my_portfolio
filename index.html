@@ -350,8 +350,8 @@ body {
 /* SOCIAL WITH X BUTTON */
 .socials {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+  align-items: center;
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
 }
@@ -371,11 +371,11 @@ body {
 }
 
 .social-link:hover {
+  border-color: var(--accent);
   color: var(--text);
   background: var(--accent-dim);
-  border-color: var(--accent);
-  box-shadow: 0 8px 25px rgba(102,126,234,0.2);
-  transform: translateX(4px);
+  transform: translateX(8px);
+  box-shadow: 0 15px 35px rgba(102,126,234,0.25);
 }
 
 .social-link svg {
@@ -389,30 +389,6 @@ body {
   filter: drop-shadow(0 0 8px var(--accent-glow));
 }
 
-/* X CLOSE BUTTON */
-.social-x {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 20px;
-  height: 20px;
-  background: var(--text3);
-  color: white;
-  border-radius: 50%;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transform: scale(0);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.social-link:hover .social-x {
-  opacity: 1;
-  transform: scale(1);
-  background: #ef4444;
-}
 
 /* ── RIGHT CONTENT ── */
 .content {
@@ -1028,7 +1004,7 @@ body {
       <a href="mailto:mohamed.aberran1@etu.uae.ac.ma" class="social-link" title="Email">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       </a>
-      <a href="https://med-aberran.github.io/my_portfolio/" target="_blank" class="social-link" title="Portfolio">
+      <a href="https://med-aberran.github.io/my_portfolio_2/" target="_blank" class="social-link" title="Portfolio">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       </a>
     </div>
@@ -1573,13 +1549,7 @@ document.addEventListener('click', e => {
   }
 });
 
-// ═══════════════════════════════════════════════════════
-// HIDE CURSOR ON MOBILE
-// ═══════════════════════════════════════════════════════
-if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-  cursorDot.style.display = 'none';
-  cursorRing.style.display = 'none';
-}
+
 </script>
 
 </body>
