@@ -163,15 +163,37 @@ body {
 /* ── LEFT SIDEBAR ── */
 .sidebar {
   background: rgba(10,10,15,0.95);
-  backdrop-filter: blur(25px);
+  backdrop-filter: blur(2px);
   border-right: 1px solid var(--border);
-  padding: 2.5rem 2rem;
+  padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 0;
   overflow-y: auto;
   position: relative;
 }
+
+/* Scrollbar de la Sidebar (Gauche) */
+.sidebar::-webkit-scrollbar { 
+  width: 4px; /* Très fine */
+  height: 4px;
+}
+.sidebar::-webkit-scrollbar-track { 
+  background: transparent; /* Fond invisible */
+}
+.sidebar::-webkit-scrollbar-thumb { 
+  background-color: rgba(102,126,234,0.2) ; /* Utilise la couleur transparente de ton thème */
+  border-radius: 10px;
+}
+.sidebar::-webkit-scrollbar-thumb:hover { 
+  background: rgba(102, 126, 234, 0.3); /* Un peu plus visible au survol */
+}
+/* Pour Firefox */
+.sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-dim) transparent;
+}
+
 
 .sidebar::after {
   content: '';
@@ -396,6 +418,7 @@ body {
   padding: 4rem 4rem 4rem 5rem;
   scroll-behavior: smooth;
 }
+
 
 /* Scrollbar */
 .content::-webkit-scrollbar { width: 4px; }
