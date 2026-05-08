@@ -411,6 +411,31 @@ body {
   filter: drop-shadow(0 0 8px var(--accent-glow));
 }
 
+/* le nom a la tete de chaque socials */
+.social-link::after {
+  content: attr(title);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  transform: translateX(-50%) translateY(4px);
+  font-family: var(--mono);
+}
+.social-link:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 
 /* ── RIGHT CONTENT ── */
 .content {
@@ -706,13 +731,33 @@ body {
   box-shadow: 0 10px 25px rgba(102,126,234,0.2);
 }
 
-.skill-dot {
-  width: 6px; height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  flex-shrink: 0;
-  box-shadow: 0 0 8px var(--accent);
+/*  Barre de progression sur les skill items */
+.skill-item[data-level]::after {
+  content: attr(data-level);
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--accent);
+  font-weight: 700;
+  opacity: 0.7;
 }
+
+/* ── SKILL GROUP TITLE DOT ── */
+.skill-group-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sgt-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  flex-shrink: 0;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
 
 /* ── LANGUAGES ── */
 .lang-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; }
@@ -903,29 +948,7 @@ body {
   font-size: 16px;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 1024px) {
-  .layout { grid-template-columns: 1fr; }
-  .sidebar { 
-    position: fixed;
-    inset: 0;
-    z-index: 1001;
-    transform: translateX(-100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .sidebar.open { transform: translateX(0); }
-  .content { padding: 2rem; }
-  .projects-grid { grid-template-columns: 1fr; }
-}
 
-@media (max-width: 768px) {
-  .theme-toggle, .cv-download { 
-    top: 15px !important; 
-    right: 15px !important; 
-    bottom: auto !important;
-  }
-  .content { padding: 1.5rem; }
-}
 </style>
 </head>
 <body data-theme="dark">
@@ -1176,49 +1199,50 @@ body {
       <div class="skills-section">
 
         <div>
-          <div class="skill-group-title">LANGAGES DE PROGRAMMATION :</div>
+          <div class="skill-group-title"><span class="sgt-dot"></span> LANGAGES DE PROGRAMMATION  :</div>
           <div class="skills-row">
-            <div class="skill-item"><div class="skill-dot"></div>Python</div>
-            <div class="skill-item"><div class="skill-dot"></div>C / C++</div>
-            <div class="skill-item"><div class="skill-dot"></div>HTML5</div>
-            <div class="skill-item"><div class="skill-dot"></div>SQL</div>
+            <div class="skill-item" data-level="★★★★☆">Python</div>
+            <div class="skill-item" data-level="★★★★☆">Git / GitHub</div>
+            <div class="skill-item" data-level="★★★☆☆">C / C++</div>
+            <div class="skill-item" data-level="★★☆☆☆">HTML / CSS</div>
+            <div class="skill-item" data-level="★★★☆☆">SQL</div>
+            
           </div>
         </div>
-
         <div>
-          <div class="skill-group-title">OUTILS & ENVIRONNEMENTS :</div>
+          <div class="skill-group-title"><span class="sgt-dot"></span>OUTILS & ENVIRONNEMENTS :</div>
           <div class="skills-row">
-            <div class="skill-item"><div class="skill-dot"></div>Git</div>
-            <div class="skill-item"><div class="skill-dot"></div>GitHub</div>
-            <div class="skill-item"><div class="skill-dot"></div>VS Code</div>
-            <div class="skill-item"><div class="skill-dot"></div>MySQL - phpMyAdmin</div>
-            <div class="skill-item"><div class="skill-dot"></div>Linux Ubuntu</div>
-            <div class="skill-item"><div class="skill-dot"></div>Docker (notions)</div>
-            <div class="skill-item"><div class="skill-dot"></div>Cisco Packet Tracer</div>
-            <div class="skill-item"><div class="skill-dot"></div>Microsoft Office</div>
+            <div class="skill-item">Git</div>
+            <div class="skill-item">GitHub</div>
+            <div class="skill-item">VS Code</div>
+            <div class="skill-item">MySQL - phpMyAdmin</div>
+            <div class="skill-item">Linux Ubuntu</div>
+            <div class="skill-item">Docker (notions)</div>
+            <div class="skill-item">Cisco Packet Tracer</div>
+            <div class="skill-item">Microsoft Office</div>
           </div> 
         </div>
 
         <div>
-          <div class="skill-group-title">COMPETENCES TECHNIQUES :</div>
+          <div class="skill-group-title"><span class="sgt-dot"></span>COMPETENCES TECHNIQUES :</div>
           <div class="skills-row">
-            <div class="skill-item"><div class="skill-dot"></div>Algorithmes & Structures de donnees</div>
-            <div class="skill-item"><div class="skill-dot"></div>Modelisation BDD (MCD/MLD)</div>
-            <div class="skill-item"><div class="skill-dot"></div>Reseaux TCP/IP</div>
-            <div class="skill-item"><div class="skill-dot"></div>Initiation IA / ML</div>
-            <div class="skill-item"><div class="skill-dot"></div>DevOps (notions)</div>
+            <div class="skill-item">Algorithmes & Structures de donnees</div>
+            <div class="skill-item">Modelisation BDD (MCD/MLD)</div>
+            <div class="skill-item">Reseaux TCP/IP</div>
+            <div class="skill-item">Initiation IA / ML</div>
+            <div class="skill-item">DevOps (notions)</div>
           </div>
         </div>
 
         <div>
-          <div class="skill-group-title">SOFT SKILLS</div>
+          <div class="skill-group-title"><span class="sgt-dot"></span>SOFT SKILLS :</div>
           <div class="skills-row">
-            <div class="skill-item"><div class="skill-dot"></div>Communication</div>
-            <div class="skill-item"><div class="skill-dot"></div>Travail en equipe</div>
-            <div class="skill-item"><div class="skill-dot"></div>Rigueur</div>
-            <div class="skill-item"><div class="skill-dot"></div>Autonomie</div>
-            <div class="skill-item"><div class="skill-dot"></div>Resolution de problemes</div>
-            <div class="skill-item"><div class="skill-dot"></div>Adaptabilite</div>
+            <div class="skill-item">Communication</div>
+            <div class="skill-item">Travail en equipe</div>
+            <div class="skill-item">Rigueur</div>
+            <div class="skill-item">Autonomie</div>
+            <div class="skill-item">Resolution de problemes</div>
+            <div class="skill-item">Adaptabilite</div>
           </div>
         </div>
 
